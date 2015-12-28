@@ -305,7 +305,7 @@ Public Class Form1
 
         End If
 
-        TempString = My.Application.Info.DirectoryPath + "SteamCMD.exe " + TempString + vbCrLf
+        TempString = My.Application.Info.DirectoryPath + "\SteamCMD.exe " + TempString + vbCrLf
 
         If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
@@ -368,7 +368,7 @@ Public Class Form1
 
             End If
 
-            TempString = My.Application.Info.DirectoryPath + "SteamCMD.exe " + TempString + vbCrLf
+            TempString = My.Application.Info.DirectoryPath + "\SteamCMD.exe " + TempString + vbCrLf
 
             If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
