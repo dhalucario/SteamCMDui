@@ -40,6 +40,8 @@ Public Class Form1
         End If
     End Function
 
+    'JSON Classes
+
     Public Class App
 
         Public Property appid As Integer
@@ -59,14 +61,22 @@ Public Class Form1
 
     End Class
 
-    Dim jsonSource = New System.Net.WebClient().DownloadString("http://api.steampowered.com/ISteamApps/GetAppList/v2?format=json")
+    'Needed Variables
+
+    Dim jsonSource = New System.Net.WebClient().DownloadString("http://api.steampowered.com/ISteamApps/GetAppList/v2?format=json") 'Steam API JSON Response
     Dim SteamGameAppIDs(450000) As Integer
-    Dim SteamGameNames(450000) As String
+    Dim SteamGameNames(450000) As String 'Long enough to contain all the games.
     Dim RW As Integer = 0
     Dim TempString As String
     Dim TempStrArr() As String
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Prepare Stuff for the programm
+
+        SaveFileDialog1.Filter = "Batch File|*.bat"
+        SaveFileDialog1.Title = "Save as an batch file"
+        SaveFileDialog1.DefaultExt = "bat"
 
         SteamGameAppIDs = SteamWebApiAppList("appid")
         SteamGameNames = SteamWebApiAppList("name")
@@ -87,6 +97,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        'Preapre Start Arguments
 
         For Each Item In CheckedListBox1.CheckedItems
 
@@ -130,6 +142,8 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
+        'Search Bar
+
         TempString = ""
 
         CheckedListBox1.Items.Clear()
@@ -155,6 +169,8 @@ Public Class Form1
 
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
 
+        'Toogle Anonyoumus Login
+
         If CheckBox2.Checked Then
 
             TextBox2.Enabled = False
@@ -170,6 +186,8 @@ Public Class Form1
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
 
+        'CheckBox Toggle Force Install Dir
+
         If CheckBox1.Checked Then
 
             TextBox1.Enabled = True
@@ -182,6 +200,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        'Prepare Mod Start Arguments
 
         TempString = ""
 
@@ -212,6 +232,8 @@ Public Class Form1
 
         End If
 
+        Debug.Print(TempString)
+
         Try
 
             Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
@@ -221,5 +243,99 @@ Public Class Form1
             MsgBox(ex.Message)
 
         End Try
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        'Save File Dialog
+        SaveFileDialog1.ShowDialog()
+
+        'Prepare Start Arguments
+        For Each Item In CheckedListBox1.CheckedItems
+
+            TempString = ""
+
+            TempStrArr = Item.ToString.Split("-")
+
+            TempString = "+app_update " + TempStrArr(0) + "validate "
+
+            If CheckBox1.Checked Then
+
+                TempString = "+force_install_dir " + TextBox1.Text + " " + TempString
+
+            End If
+
+            If CheckBox2.Checked Then
+
+                TempString = "+login anonymous " + TempString
+
+            Else
+
+                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+
+            End If
+
+            If Not CheckBox3.Checked Then
+
+                TempString = TempString + "+quit"
+
+            End If
+
+            TempString = "SteamCMD.exe " + TempString + vbCrLf
+
+            Try
+
+                'Write in file
+                My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
+
+            Catch ex As Exception
+
+                MsgBox(ex.Message)
+
+            End Try
+        Next
+
+        'Preapre Mod Start Arguments
+
+        If Not ComboBox1.Text = Nothing Then
+
+            TempString = "+app_set_config 90 mod " + ComboBox1.Text + " +app_update 90 "
+
+            If CheckBox1.Checked Then
+
+                TempString = "+force_install_dir " + TextBox1.Text + " " + TempString
+
+            End If
+
+            If CheckBox2.Checked Then
+
+                TempString = "+login anonymous " + TempString
+
+            Else
+
+                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+
+            End If
+        End If
+
+        If Not CheckBox3.Checked Then
+
+            TempString = TempString + "+quit"
+
+        End If
+
+        TempString = "SteamCMD.exe " + TempString + vbCrLf
+
+        Try
+
+            'Write in file
+            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
+
+        Catch ex As Exception
+
+            MsgBox(ex.Message)
+
+        End Try
+
     End Sub
 End Class
