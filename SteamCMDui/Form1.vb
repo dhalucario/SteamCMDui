@@ -71,12 +71,15 @@ Public Class Form1
     Dim RW As Integer = 0
     Dim TempString As String
     Dim TempStrArr() As String
+    Dim SteamCMDPath As String = System.Windows.Forms.Application.StartupPath + "\SteamCMD.exe"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Debug.Print(System.Windows.Forms.Application.StartupPath)
+
         'SteamCMD Check
 
-        If Not My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath + "\SteamCMD.exe") Then
+        If Not My.Computer.FileSystem.FileExists(SteamCMDPath) Then
 
             MsgBox("Please put this Programm in the same folder as SteamCMD", MsgBoxStyle.OkOnly & MsgBoxStyle.Critical, "Error")
 
@@ -145,7 +148,7 @@ Public Class Form1
 
             Try
 
-                Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
+                Process.Start(New ProcessStartInfo(SteamCMDPath, TempString))
 
             Catch ex As Exception
 
@@ -178,7 +181,7 @@ Public Class Form1
                 End If
             End If
 
-                RW = RW + 1
+            RW = RW + 1
 
         End While
     End Sub
@@ -250,7 +253,7 @@ Public Class Form1
 
             Try
 
-                Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
+                Process.Start(New ProcessStartInfo(SteamCMDPath, TempString))
 
             Catch ex As Exception
 
@@ -305,7 +308,8 @@ Public Class Form1
 
         End If
 
-        TempString = My.Application.Info.DirectoryPath + "\SteamCMD.exe " + TempString + vbCrLf
+        'TempString = SteamCMDPath + "\SteamCMD.exe " + TempString + vbNewLine
+        TempString = "SteamCMD.exe " + TempString + vbNewLine
 
         If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
@@ -323,7 +327,7 @@ Public Class Form1
         Try
 
             'Write in file
-            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
+            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, False)
 
         Catch ex As Exception
 
@@ -368,7 +372,8 @@ Public Class Form1
 
             End If
 
-            TempString = My.Application.Info.DirectoryPath + "\SteamCMD.exe " + TempString + vbCrLf
+            'TempString = SteamCMDPath + "\SteamCMD.exe " + TempString + vbNewLine
+            TempString = "SteamCMD.exe " + TempString + vbNewLine
 
             If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
@@ -386,7 +391,7 @@ Public Class Form1
             Try
 
                 'Write in file
-                My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
+                My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, False)
 
             Catch ex As Exception
 
