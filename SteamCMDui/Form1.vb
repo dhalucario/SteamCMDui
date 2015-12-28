@@ -110,7 +110,11 @@ Public Class Form1
 
             End If
 
-            TempString = TempString + "+quit"
+            If Not CheckBox3.Checked Then
+
+                TempString = TempString + "+quit"
+
+            End If
 
             Try
 
@@ -202,7 +206,11 @@ Public Class Form1
             End If
         End If
 
-        TempString = TempString + "+quit"
+        If Not CheckBox3.Checked Then
+
+            TempString = TempString + "+quit"
+
+        End If
 
         Try
 
