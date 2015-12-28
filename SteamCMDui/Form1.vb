@@ -114,6 +114,9 @@ Public Class Form1
 
         For Each Item In CheckedListBox1.CheckedItems
 
+            TempString = Nothing
+            TempStrArr = Nothing
+
             TempStrArr = Item.ToString.Split("-")
 
             TempString = "+app_update " + TempStrArr(0) + "validate "
@@ -142,8 +145,6 @@ Public Class Form1
 
             Try
 
-                Debug.Print(TempString)
-
                 Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
 
             Catch ex As Exception
@@ -158,7 +159,8 @@ Public Class Form1
 
         'Search Bar
 
-        TempString = ""
+        TempString = Nothing
+        TempStrArr = Nothing
 
         CheckedListBox1.Items.Clear()
         RW = 0
@@ -217,7 +219,8 @@ Public Class Form1
 
         'Prepare Mod Start Arguments
 
-        TempString = ""
+        TempString = Nothing
+        TempStrArr = Nothing
 
         If Not ComboBox1.Text = Nothing Then
 
@@ -238,6 +241,62 @@ Public Class Form1
                 TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
 
             End If
+
+            If Not CheckBox3.Checked Then
+
+                TempString = TempString + "+quit"
+
+            End If
+
+            Try
+
+                Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
+
+            Catch ex As Exception
+
+                MsgBox(ex.Message)
+
+            End Try
+
+        Else
+
+            MsgBox("Please choose a mod.", MsgBoxStyle.Exclamation & MsgBoxStyle.OkOnly)
+
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        'Save File Dialog
+        SaveFileDialog1.ShowDialog()
+
+        'Preapre Start Arguments
+
+        TempString = Nothing
+        TempStrArr = Nothing
+
+        For Each Item In CheckedListBox1.CheckedItems
+
+            TempStrArr = Item.ToString.Split("-")
+
+            TempString = TempString + "+app_update " + TempStrArr(0) + "validate "
+
+        Next
+
+        If CheckBox1.Checked Then
+
+            TempString = "+force_install_dir " + TextBox1.Text + " " + TempString
+
+        End If
+
+        If CheckBox2.Checked Then
+
+            TempString = "+login anonymous " + TempString
+
+        Else
+
+            TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+
         End If
 
         If Not CheckBox3.Checked Then
@@ -246,11 +305,25 @@ Public Class Form1
 
         End If
 
-        Debug.Print(TempString)
+        TempString = "SteamCMD.exe " + TempString + vbCrLf
+
+        If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
+
+            Try
+
+                My.Computer.FileSystem.DeleteFile(SaveFileDialog1.FileName)
+
+            Catch ex As Exception
+
+                MsgBox(ex.Message)
+
+            End Try
+        End If
 
         Try
 
-            Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
+            'Write in file
+            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
 
         Catch ex As Exception
 
@@ -259,19 +332,19 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
-        'Save File Dialog
-        SaveFileDialog1.ShowDialog()
+        If Not ComboBox1.Text = Nothing Then
 
-        'Prepare Start Arguments
-        For Each Item In CheckedListBox1.CheckedItems
+            'Save File Dialog
+            SaveFileDialog1.ShowDialog()
 
-            TempString = ""
+            'Prepare Mod Start Arguments
 
-            TempStrArr = Item.ToString.Split("-")
+            TempString = Nothing
+            TempStrArr = Nothing
 
-            TempString = "+app_update " + TempStrArr(0) + "validate "
+            TempString = "+app_set_config 90 mod " + ComboBox1.Text + " +app_update 90 "
 
             If CheckBox1.Checked Then
 
@@ -297,6 +370,19 @@ Public Class Form1
 
             TempString = "SteamCMD.exe " + TempString + vbCrLf
 
+            If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
+
+                Try
+
+                    My.Computer.FileSystem.DeleteFile(SaveFileDialog1.FileName)
+
+                Catch ex As Exception
+
+                    MsgBox(ex.Message)
+
+                End Try
+            End If
+
             Try
 
                 'Write in file
@@ -307,63 +393,11 @@ Public Class Form1
                 MsgBox(ex.Message)
 
             End Try
-        Next
 
-        'Preapre Mod Start Arguments
+        Else
 
-        If Not ComboBox1.Text = Nothing Then
-
-            TempString = "+app_set_config 90 mod " + ComboBox1.Text + " +app_update 90 "
-
-            If CheckBox1.Checked Then
-
-                TempString = "+force_install_dir " + TextBox1.Text + " " + TempString
-
-            End If
-
-            If CheckBox2.Checked Then
-
-                TempString = "+login anonymous " + TempString
-
-            Else
-
-                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
-
-            End If
-        End If
-
-        If Not CheckBox3.Checked Then
-
-            TempString = TempString + "+quit"
+            MsgBox("Please choose a mod.", MsgBoxStyle.Exclamation & MsgBoxStyle.OkOnly)
 
         End If
-
-        TempString = "SteamCMD.exe " + TempString + vbCrLf
-
-        'Write in file
-
-        If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
-
-            Try
-
-                My.Computer.FileSystem.DeleteFile(SaveFileDialog1.FileName)
-
-            Catch ex As Exception
-
-                MsgBox(ex.Message)
-
-            End Try
-        End If
-
-        Try
-
-            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
-
-        Catch ex As Exception
-
-            MsgBox(ex.Message)
-
-        End Try
-
     End Sub
 End Class
