@@ -4,6 +4,8 @@ Public Class Form1
 
     Public Function SteamWebApiAppList(Type As String)
 
+        'JSON Steam API AppID reader
+
         Dim RW As Integer = 1
         Dim SteamGameInfoObject As SteamAPIJSONResult = JsonConvert.DeserializeObject(Of SteamAPIJSONResult)(jsonSource)
 
@@ -72,6 +74,16 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'SteamCMD Check
+
+        If Not My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath + "\SteamCMD.exe") Then
+
+            MsgBox("Please put this Programm in the same folder as SteamCMD", MsgBoxStyle.OkOnly & MsgBoxStyle.Critical, "Error")
+
+            Application.Exit()
+
+        End If
+
         'Prepare Stuff for the programm
 
         SaveFileDialog1.Filter = "Batch File|*.bat"
@@ -129,6 +141,8 @@ Public Class Form1
             End If
 
             Try
+
+                Debug.Print(TempString)
 
                 Process.Start(New ProcessStartInfo(My.Application.Info.DirectoryPath + "\SteamCMD.exe", TempString))
 
@@ -326,9 +340,23 @@ Public Class Form1
 
         TempString = "SteamCMD.exe " + TempString + vbCrLf
 
+        'Write in file
+
+        If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
+
+            Try
+
+                My.Computer.FileSystem.DeleteFile(SaveFileDialog1.FileName)
+
+            Catch ex As Exception
+
+                MsgBox(ex.Message)
+
+            End Try
+        End If
+
         Try
 
-            'Write in file
             My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, True)
 
         Catch ex As Exception
