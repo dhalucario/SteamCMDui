@@ -1,4 +1,6 @@
 ﻿Imports Newtonsoft.Json
+Imports System.Text
+Imports System.IO
 
 Public Class Form1
 
@@ -72,6 +74,8 @@ Public Class Form1
     Dim TempString As String
     Dim TempStrArr() As String
     Dim SteamCMDPath As String = System.Windows.Forms.Application.StartupPath + "\SteamCMD.exe"
+    Dim Writer As System.IO.StreamWriter
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -308,8 +312,7 @@ Public Class Form1
 
         End If
 
-        'TempString = SteamCMDPath + "\SteamCMD.exe " + TempString + vbNewLine
-        TempString = "SteamCMD.exe " + TempString + vbNewLine
+        TempString = SteamCMDPath + " " + TempString
 
         If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
@@ -326,8 +329,10 @@ Public Class Form1
 
         Try
 
-            'Write in file
-            My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, False)
+            Writer = New StreamWriter(New FileStream(SaveFileDialog1.FileName, FileMode.OpenOrCreate), System.Text.Encoding.ASCII)
+            Writer.WriteLine(TempString)
+            Writer.Flush()
+            Writer.Close()
 
         Catch ex As Exception
 
@@ -372,8 +377,7 @@ Public Class Form1
 
             End If
 
-            'TempString = SteamCMDPath + "\SteamCMD.exe " + TempString + vbNewLine
-            TempString = "SteamCMD.exe " + TempString + vbNewLine
+            TempString = SteamCMDPath + " " + TempString
 
             If My.Computer.FileSystem.FileExists(SaveFileDialog1.FileName) Then
 
@@ -390,8 +394,10 @@ Public Class Form1
 
             Try
 
-                'Write in file
-                My.Computer.FileSystem.WriteAllText(SaveFileDialog1.FileName, TempString, False)
+                Writer = New StreamWriter(New FileStream(SaveFileDialog1.FileName, FileMode.OpenOrCreate), System.Text.Encoding.ASCII)
+                Writer.WriteLine(TempString)
+                Writer.Flush()
+                Writer.Close()
 
             Catch ex As Exception
 
