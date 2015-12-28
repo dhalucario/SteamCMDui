@@ -14,7 +14,7 @@ Public Class Form1
             For Each Item In SteamGameInfoObject.applist.apps
 
                 GameInformation(RW) = Item.appid
-                RW = RW + 
+                RW = RW + 1
 
             Next
 
