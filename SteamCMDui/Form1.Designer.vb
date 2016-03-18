@@ -47,7 +47,7 @@ Partial Class Form1
         Me.Button1.Location = New System.Drawing.Point(12, 423)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(606, 23)
-        Me.Button1.TabIndex = 1
+        Me.Button1.TabIndex = 3
         Me.Button1.Text = "Download"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -57,7 +57,7 @@ Partial Class Form1
         Me.TextBox1.Location = New System.Drawing.Point(624, 12)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(222, 20)
-        Me.TextBox1.TabIndex = 3
+        Me.TextBox1.TabIndex = 4
         '
         'CheckBox1
         '
@@ -65,7 +65,7 @@ Partial Class Form1
         Me.CheckBox1.Location = New System.Drawing.Point(852, 14)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(99, 17)
-        Me.CheckBox1.TabIndex = 4
+        Me.CheckBox1.TabIndex = 5
         Me.CheckBox1.Text = "Force Install Dir"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
@@ -75,7 +75,7 @@ Partial Class Form1
         Me.TextBox2.Location = New System.Drawing.Point(688, 397)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(263, 20)
-        Me.TextBox2.TabIndex = 5
+        Me.TextBox2.TabIndex = 12
         '
         'CheckBox2
         '
@@ -85,7 +85,7 @@ Partial Class Form1
         Me.CheckBox2.Location = New System.Drawing.Point(627, 374)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(81, 17)
-        Me.CheckBox2.TabIndex = 6
+        Me.CheckBox2.TabIndex = 11
         Me.CheckBox2.Text = "Anonymous"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
@@ -96,7 +96,7 @@ Partial Class Form1
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox3.Size = New System.Drawing.Size(263, 20)
-        Me.TextBox3.TabIndex = 7
+        Me.TextBox3.TabIndex = 13
         '
         'Label1
         '
@@ -104,7 +104,7 @@ Partial Class Form1
         Me.Label1.Location = New System.Drawing.Point(624, 400)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(58, 13)
-        Me.Label1.TabIndex = 8
+        Me.Label1.TabIndex = 14
         Me.Label1.Text = "Username:"
         '
         'Label2
@@ -113,7 +113,7 @@ Partial Class Form1
         Me.Label2.Location = New System.Drawing.Point(624, 426)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
-        Me.Label2.TabIndex = 9
+        Me.Label2.TabIndex = 15
         Me.Label2.Text = "Password"
         '
         'CheckedListBox1
@@ -122,21 +122,21 @@ Partial Class Form1
         Me.CheckedListBox1.Location = New System.Drawing.Point(12, 38)
         Me.CheckedListBox1.Name = "CheckedListBox1"
         Me.CheckedListBox1.Size = New System.Drawing.Size(606, 379)
-        Me.CheckedListBox1.TabIndex = 10
+        Me.CheckedListBox1.TabIndex = 2
         '
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(93, 12)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(525, 20)
-        Me.TextBox4.TabIndex = 3
+        Me.TextBox4.TabIndex = 1
         '
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(12, 10)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 11
+        Me.Button2.TabIndex = 0
         Me.Button2.Text = "Search"
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -145,7 +145,7 @@ Partial Class Form1
         Me.Button3.Location = New System.Drawing.Point(624, 65)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(124, 23)
-        Me.Button3.TabIndex = 12
+        Me.Button3.TabIndex = 7
         Me.Button3.Text = "Install HL1 Mod"
         Me.Button3.UseVisualStyleBackColor = True
         '
@@ -160,7 +160,7 @@ Partial Class Form1
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.ComboBox1.Size = New System.Drawing.Size(327, 21)
-        Me.ComboBox1.TabIndex = 13
+        Me.ComboBox1.TabIndex = 6
         '
         'CheckBox3
         '
@@ -168,7 +168,7 @@ Partial Class Form1
         Me.CheckBox3.Location = New System.Drawing.Point(857, 69)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(94, 17)
-        Me.CheckBox3.TabIndex = 14
+        Me.CheckBox3.TabIndex = 8
         Me.CheckBox3.Text = "Keep Running"
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
@@ -177,7 +177,7 @@ Partial Class Form1
         Me.Button4.Location = New System.Drawing.Point(624, 94)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(213, 23)
-        Me.Button4.TabIndex = 15
+        Me.Button4.TabIndex = 9
         Me.Button4.Text = "Batch Setup (Server)"
         Me.Button4.UseVisualStyleBackColor = True
         '
@@ -186,7 +186,7 @@ Partial Class Form1
         Me.Button5.Location = New System.Drawing.Point(843, 94)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(108, 23)
-        Me.Button5.TabIndex = 16
+        Me.Button5.TabIndex = 10
         Me.Button5.Text = "Batch Setup (Mod)"
         Me.Button5.UseVisualStyleBackColor = True
         '
