@@ -1,5 +1,4 @@
 ﻿Imports Newtonsoft.Json
-Imports System.Text
 Imports System.IO
 
 Public Class Form1
@@ -136,12 +135,16 @@ Public Class Form1
 
             If CheckBox2.Checked Then
 
-                TempString = "+login anonymous " + TempString
+                TempString = " +login anonymous " + TempString
 
             Else
 
-                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+                TempString = " +login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
 
+            End If
+
+            If Not ComboBox2.Text = Nothing Then
+                TempString = "+@sSteamCmdForcePlatformType " + ComboBox2.Text + TempString
             End If
 
             If Not CheckBox3.Checked Then
@@ -241,12 +244,16 @@ Public Class Form1
 
             If CheckBox2.Checked Then
 
-                TempString = "+login anonymous " + TempString
+                TempString = " +login anonymous " + TempString
 
             Else
 
-                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+                TempString = " +login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
 
+            End If
+
+            If Not ComboBox2.Text = Nothing Then
+                TempString = "+@sSteamCmdForcePlatformType " + ComboBox2.Text + TempString
             End If
 
             If Not CheckBox3.Checked Then
@@ -298,17 +305,21 @@ Public Class Form1
 
         If CheckBox2.Checked Then
 
-            TempString = "+login anonymous " + TempString
+            TempString = " +login anonymous " + TempString
 
         Else
 
-            TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+            TempString = " +login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
 
+        End If
+
+        If Not ComboBox2.Text = Nothing Then
+            TempString = " +@sSteamCmdForcePlatformType " + ComboBox2.Text + " " + TempString
         End If
 
         If Not CheckBox3.Checked Then
 
-            TempString = TempString + "+quit"
+            TempString = TempString + " +quit"
 
         End If
 
@@ -363,11 +374,11 @@ Public Class Form1
 
             If CheckBox2.Checked Then
 
-                TempString = "+login anonymous " + TempString
+                TempString = " +login anonymous " + TempString
 
             Else
 
-                TempString = "+login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
+                TempString = " +login " + TextBox2.Text + " " + TextBox3.Text + " " + TempString
 
             End If
 

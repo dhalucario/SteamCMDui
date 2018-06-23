@@ -40,6 +40,8 @@ Partial Class Form1
         Me.Button4 = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -190,11 +192,32 @@ Partial Class Form1
         Me.Button5.Text = "Batch Setup (Mod)"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'ComboBox2
+        '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {"windows", "linux", "macos"})
+        Me.ComboBox2.Location = New System.Drawing.Point(652, 123)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(299, 21)
+        Me.ComboBox2.TabIndex = 16
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(624, 126)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(22, 13)
+        Me.Label3.TabIndex = 17
+        Me.Label3.Text = "OS"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(963, 455)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.CheckBox3)
@@ -213,7 +236,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Button1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
-        Me.Text = "SteamCMDui"
+        Me.Text = "Steam CMD UI"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -235,4 +258,6 @@ Partial Class Form1
     Friend WithEvents Button4 As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents Button5 As Button
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label3 As Label
 End Class
